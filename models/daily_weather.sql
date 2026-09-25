@@ -13,10 +13,10 @@ daily_weather_agg as (
     select
     daily_weather,
     weather,
-    avg(temp) avg_temp,
-    round(avg(pressure)) avg_pressure,
-    avg(humidity) avg_humid,
-    avg(clouds) avg_cloud
+    round(avg(temp),2) avg_temp,
+    round(avg(pressure),2) avg_pressure,
+    round(avg(humidity),2) avg_humid,
+    round(avg(clouds),2) avg_cloud
     from daily_weather
     group by daily_weather,weather
     qualify row_number() over (partition by daily_weather order by count(weather) desc) = 1
